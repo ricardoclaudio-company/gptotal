@@ -1,71 +1,12 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Painel Gestão de Projetos</title>
-  <link rel="stylesheet" href="assets/style.css">
-</head>
-<body>
-  <div class="container">
-    <header>
-      <h1>Painel Gestão de Projetos</h1>
-      <p>Importação de Épicos e Value Streams Jira</p>
-    </header>
-
-    <section id="client-section">
-      <h2>1. Selecione ou Crie um Cliente</h2>
-      <select id="client-select" onchange="onClientChange()">
-        <option value="">-- Carregando clientes --</option>
-      </select>
-      <button onclick="refreshClients()">Atualizar</button>
-      <br><br>
-      <input type="text" id="new-client-name" placeholder="Nome do novo cliente">
-      <button onclick="createClient()">Criar Cliente</button>
-    </section>
-
-    <section id="project-section" style="display:none;">
-      <h2>2. Crie um Projeto</h2>
-      <input type="text" id="project-name" placeholder="Nome do projeto">
-      <input type="text" id="project-desc" placeholder="Descrição (opcional)">
-      <button onclick="createProject()">Criar Projeto</button>
-      <select id="project-select">
-        <option value="">-- Projetos --</option>
-      </select>
-    </section>
-
-    <section id="pod-section" style="display:none;">
-      <h2>3. Crie um POD</h2>
-      <input type="text" id="pod-name" placeholder="Nome do POD">
-      <input type="text" id="pod-desc" placeholder="Descrição (opcional)">
-      <button onclick="createPod()">Criar POD</button>
-      <select id="pod-select">
-        <option value="">-- PODs --</option>
-      </select>
-    </section>
-
-    <section id="upload-section" style="display:none;">
-      <h2>4. Faça Upload de Arquivo (CSV/Excel)</h2>
-      <input type="file" id="file-input" accept=".csv,.xlsx,.xls">
-      <button onclick="uploadFile()">Enviar Arquivo</button>
-      <div id="upload-status"></div>
-    </section>
-
-    <section id="value-stream-section" style="display:none;">
-      <h2>5. Crie um Value Stream</h2>
-      <input type="text" id="vs-name" placeholder="Nome do Value Stream">
-      <input type="text" id="vs-desc" placeholder="Descrição (opcional)">
-      <input type="text" id="vs-owner" placeholder="Responsável (opcional)">
-      <button onclick="createValueStream()">Criar Value Stream</button>
-      <div id="value-streams-list"></div>
-    </section>
-
-    <section id="dashboard-section" style="display:none;">
-      <h2>6. Dashboard</h2>
-      <div id="dashboard-content"></div>
-    </section>
-  </div>
-
-  <script src="assets/app.js"></script>
-</body>
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel Gestão de Projetos - React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

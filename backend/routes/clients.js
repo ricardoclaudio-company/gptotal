@@ -14,16 +14,55 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const { name, metadata } = req.body;
+    const { name, description, metadata } = req.body;
     if (!name) return res.status(400).json({ error: "name is required" });
+
+    const payload = { name, metadata: metadata || {} };
+    if (description) payload.metadata.description = description;
 
     const { data, error } = await supabase
       .from("clients")
-      .insert([{ name, metadata: metadata || {} }])
+      .insert([payload])
       .select();
 
     if (error) throw error;
     res.json(data[0]);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.put("/:client_id", async (req, res) => {
+  try {
+    const { name, description, metadata } = req.body;
+    if (!name) return res.status(400).json({ error: "name is required" });
+
+    const payload = { name, metadata: metadata || {} };
+    if (description) payload.metadata.description = description;
+
+    const { data, error } = await supabase
+      .from("clients")
+      .update(payload)
+      .eq("id", req.params.client_id)
+      .select()
+      .single();
+
+    if (error) throw error;
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.delete("/:client_id", async (req, res) => {
+  try {
+    const { error } = await supabase
+      .from("clients")
+      .delete()
+      .eq("id", req.params.client_id);
+
+    if (error) throw error;
+    res.status(204).end();
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
