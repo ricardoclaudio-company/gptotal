@@ -1,4 +1,9 @@
 const { createClient } = require("@supabase/supabase-js");
+const WebSocket = require("ws");
+
+if (typeof global.WebSocket === "undefined") {
+  global.WebSocket = WebSocket;
+}
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_ANON_KEY;
